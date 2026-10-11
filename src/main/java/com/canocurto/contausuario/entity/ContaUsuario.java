@@ -1,5 +1,8 @@
 package com.canocurto.contausuario.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.canocurto.contausuario.dto.FazerCadastro;
 
 import jakarta.persistence.Column;
@@ -7,6 +10,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,6 +31,8 @@ public class ContaUsuario {
     @Column(unique = true)
     private String email;
     private String senha;
+    @OneToMany (mappedBy = "contausuario")
+    private List<Produto> produtos = new ArrayList<>();
 
     public ContaUsuario(FazerCadastro dados) {
         this.nomeUsuario = dados.nomeUsuario();
